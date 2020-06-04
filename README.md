@@ -1,5 +1,7 @@
 # docker-udpspeeder
 
+![Docker Pulls](https://img.shields.io/docker/pulls/dogbutcat/docker-speeder) ![Docker Image Version (latest by date)](https://img.shields.io/docker/v/dogbutcat/docker-speeder)
+
 ## Change Log
 
 > 2020-06
@@ -24,14 +26,14 @@ this is for udpspeeder usage. Build-in version is [Here](https://github.com/wang
 > please replace command option with default entry point `speederv2_amd64` like what you need to add to end `docker run` as below
 
 ```sh
-docker run -p 1234:1234/udp -p 5678:5678/udp dogbutcat/1.0-speederv2 \
+docker run -p 1234:1234/udp -p 5678:5678/udp dogbutcat/docker-speeder:1.0.0 \
           -s -l127.0.0.1:1234 -r127.0.0.1:5678 -f1:2 -k "passwds" --mode 0
 ```
 
 you can also replace the binary with append `speederv2_x86`, `speederv2_arm`, `speederv2_mips24kc_be`, `speederv2_mips24kc_le` to command
 
 ```sh
-docker run -p 1234:1234/udp -p 5678:5678/udp dogbutcat/1.0-speederv2 speederv2_x86 \
+docker run -p 1234:1234/udp -p 5678:5678/udp dogbutcat/docker-speeder:1.0.0 speederv2_x86 \
           -s -l127.0.0.1:1234 -r127.0.0.1:5678 -f1:2 -k "passwds" --mode 0
 ```
 
