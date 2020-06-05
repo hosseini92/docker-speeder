@@ -28,6 +28,7 @@ COPY script script
 # RUN /sbin/service sshd start && /sbin/service sshd stop
 
 ENV R_PORT="5678"
+ENV R_IP=
 
 # CMD ["/usr/sbin/sshd", "-D" ]
 # find options here https://github.com/wangyu-/UDPspeeder#full-options
