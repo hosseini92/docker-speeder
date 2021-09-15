@@ -7,9 +7,11 @@ RUN apk add vim lsof tar
 # for centos 7 upgrade
 WORKDIR /opt/speederv2
 ENV PATH="/opt/speederv2:${PATH}"
+ENV SPEEDERV2_VERSION=20210116.0
+
 
 # UDPspeeder 20190121.0
-RUN wget -O speederv2_linux.tar.gz https://github.com/wangyu-/UDPspeeder/releases/download/20190121.0/speederv2_binaries.tar.gz &&\
+RUN wget -O speederv2_linux.tar.gz https://github.com/wangyu-/UDPspeeder/releases/download/${SPEEDERV2_VERSION}/speederv2_binaries.tar.gz &&\
 	tar xzvf speederv2_linux.tar.gz
 
 # copy pre-setting to workspace

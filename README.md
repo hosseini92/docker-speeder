@@ -4,6 +4,11 @@
 
 ## Change Log
 
+> 2021-09
+
+- fix fetch ipv4
+- update updspeeder to 20210116.0
+
 > 2020-06
 
 - update udpspeeder to 20190121.0
