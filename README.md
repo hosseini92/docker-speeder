@@ -6,7 +6,7 @@
 
 > 2021-09
 
-- fix fetch ipv4
+- fix fetch ipv4 by default
 - update updspeeder to 20210116.0
 
 > 2020-06
