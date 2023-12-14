@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:3.19
 
 # prepare everything
 RUN apk update
@@ -7,7 +7,7 @@ RUN apk add vim lsof tar
 # for centos 7 upgrade
 WORKDIR /opt/speederv2
 ENV PATH="/opt/speederv2:${PATH}"
-ENV SPEEDERV2_VERSION=20210116.0
+ENV SPEEDERV2_VERSION=20230206.0
 
 
 # UDPspeeder 20190121.0

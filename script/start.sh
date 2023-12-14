@@ -1,6 +1,6 @@
 #!/bin/sh
 
-ip=$(wget -qO- -t1 -T2 -4 ip.sb)
+ip=$(wget -qO- -t1 -T2 ip.sb)
 
 args="-r ${R_IP:-$ip}:$R_PORT"
 bin="$1"

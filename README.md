@@ -4,6 +4,11 @@
 
 ## Change Log
 
+> 2023-12
+
+- remove unsupported wget option
+- update udpspeeder to 20230206.0
+
 > 2021-09
 
 - fix fetch ipv4 by default
