@@ -29,25 +29,38 @@ this image is based on alpine image & you need basic docker knowledge. You can g
 
 ## Word first
 
-this is for udpspeeder usage. Build-in version is [Here](https://github.com/wangyu-/UDPspeeder/releases/20180806.0)
+this is for udpspeeder usage. Build-in version is [Here](https://github.com/wangyu-/UDPspeeder/releases/tag/20230206.0)
 
 ## How To Use It
 
-> please replace command option with default entry point `speederv2_amd64` like what you need to add to end `docker run` as below
+### Server
 
 ```sh
-docker run -p 1234:1234/udp -p 5678:5678/udp dogbutcat/docker-speeder:1.0.0 \
-          -s -l127.0.0.1:1234 -r127.0.0.1:5678 -f1:2 -k "passwds" --mode 0
+name_server="docker-speeder-server"
+bin_server=speederv2_amd64 # or speederv2_arm ...
+sudo docker run -d \
+            --restart always \
+            --network host \
+            --name $name_server \
+            docker-speeder:latest \
+            $bin_server -s -l 0.0.0.0:8855 -r 127.0.0.1:7777 -f 20:10 -k "passwds" --mode 0
 ```
 
-you can also replace the binary with append `speederv2_x86`, `speederv2_arm`, `speederv2_mips24kc_be`, `speederv2_mips24kc_le` to command
+### Client
 
 ```sh
-docker run -p 1234:1234/udp -p 5678:5678/udp dogbutcat/docker-speeder:1.0.0 speederv2_x86 \
-          -s -l127.0.0.1:1234 -r127.0.0.1:5678 -f1:2 -k "passwds" --mode 0
+name_client="docker-speeder-client"
+bin_client=speederv2_amd64 # or speederv2_arm ...
+sudo docker run -d \
+            --restart always \
+            --network host \
+            --cap-add NET_ADMIN \
+            --name $name_client \
+            docker-speeder:latest \
+            $bin_client -c -l 0.0.0.0:3333 -r 127.0.0.1:8855  -f 20:10 -k "passwds" --mode 0
 ```
 
-## Caveats
+## Notice:
 
 For several days' testing, if you need to change NAT(Network Address Translation) type, MUST work in `host` network mode while docker bridge network is also working in NAT - [Helpful Link](http://blog.daocloud.io/docker-bridge/).
 

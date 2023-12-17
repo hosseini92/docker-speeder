@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# Function to exit the script and kill the background process
+# Function to exit the script and kill the background process gracefully
 exit_proc() {
-    kill -SIGTERM $(pgrep sleep)
+    kill -SIGTERM $child_pid
 }
 
 # Function to perform cleanup and exit
@@ -16,15 +16,21 @@ trap finish SIGTERM SIGINT SIGQUIT
 
 # Extract binary and additional arguments
 bin="$1"
-extArgs="${@:2}"
+shift
+extArgs="$@"
+
+echo "-----------------------------------------------------"
+echo "Starting $bin with args: $extArgs"
+echo "-----------------------------------------------------"
 
 # Execute the binary with arguments in the background
-"$bin" $extArgs 2>&1 &
+$bin $extArgs 2>&1 &
+child_pid=$!
 
-# Infinite loop with sleep
-while true
-do
-    sleep 1d &
-    wait $!
+# Wait for the background process to terminate gracefully
+wait $child_pid
+
+# Keep the container running with a lightweight process
+while true; do
+    sleep 1
 done
-
